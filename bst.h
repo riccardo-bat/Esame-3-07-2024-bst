@@ -1,7 +1,7 @@
 #ifndef BST_H
 #define BST_H
 
-#include "tipo.h"    /* per tipo_inf */
+#include "hotel.h"    /* per tipo_inf */
 
 /* Chiave numerica */
 typedef int tipo_key;
@@ -11,7 +11,7 @@ typedef struct bnode bnode;
 
 /* Nodo dell’albero binario di ricerca */
 struct bnode {
-    tipo_key   key;
+    tipo_key   key; //stelle dell'hotel
     tipo_inf   inf;
     bnode     *left;
     bnode     *right;
@@ -19,7 +19,7 @@ struct bnode {
 };
 
 /* Radice dell’albero */
-typedef bnode *bst;
+typedef bnode* bst;
 
 /* --- Prototipi delle funzioni --- */
 

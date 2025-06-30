@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "bst.h"
-#include "tipo.h"   // per copy(), compare(), print_tipo_inf(), ecc.
+#include "hotel.h"   // per copy(), compare(), print_tipo_inf(), ecc.
 
 /* Copia la chiave k in *dest e la restituisce */
 static tipo_key copy_key(tipo_key *dest, tipo_key k) {

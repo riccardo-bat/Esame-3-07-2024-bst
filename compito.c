@@ -11,6 +11,7 @@ void create_bst(FILE* fp, bst* bst_hotels);
 void stampa(bst t);
 void ricerca(bst, int, bool);
 int media(bst bst_hotels, int threshold, char* place);
+void per_luogo(bst bst_hotels, char* place);
 
 int main(){
     //PUNTO 1   
@@ -45,6 +46,13 @@ int main(){
 
     printf("\n\nIl calcolo della media, stabiliti i parametri [soglia = %d, luogo = '%s'], risulta %d",
          threshold_stelle, place, media(bst_hotels, threshold_stelle, place));
+
+
+
+    //punto 3
+    printf("\n\n--------------------------------------------------");
+    string_input("\nInserire il luogo di ricerca degli hotel: ", place, MAX_PLACE_LEN);
+    per_luogo(bst_hotels, place);
 
 
 
@@ -90,11 +98,6 @@ void string_input(char* msg, char* dest, size_t maxLengthInput){
     while(fgets(buffer, maxLengthInput+1, stdin) == NULL){
         printf("\n\t- Reinserire: ");
     }
-
-    //svuoto il buffer
-    int c;
-    while((c=getchar()) != '\n' && c != EOF)
-        ;
 
     //rimpiazzo il primo '\n' con il terminatore
     buffer[strcspn(buffer, "\n")] = '\0'; //al posto del "\n" inserisco il terminatore
@@ -228,4 +231,26 @@ int media(bst bst_hotels, int threshold, char* place){
     //se il nodo attule ha una chiave già minore della soglia, è inutile andare a destra verso nodi con chiavi più piccole
     tot += media(bst_hotels->right, threshold, place);
     return tot;
+}
+
+/**
+ * @brief Stampo gli hotel che si trovano in place. per stamparli in ordine decrescente utilizzo una DFS inorder
+ * 
+ * @param bst_hotels 
+ * @param place 
+ */
+void per_luogo(bst bst_hotels, char* place){
+    //caso base --> albero vuoto
+    if(bst_hotels == NULL) return; 
+
+    per_luogo(bst_hotels->left, place); 
+
+    //analizzo il nodo
+    if(strcmp(bst_hotels->inf.luogo, place) == 0){
+        print_tipo_inf(bst_hotels->inf);
+        printf(" --> ");
+        print_key(bst_hotels->key);
+    }
+
+    per_luogo(bst_hotels->right, place);
 }

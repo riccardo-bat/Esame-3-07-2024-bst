@@ -1,0 +1,10 @@
+*.o
+*.out
+*.exe
+*.gch
+*.html
+*.css
+*.js
+*.png
+*.jpg
+*.svg
